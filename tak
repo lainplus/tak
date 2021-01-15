@@ -5884,7 +5884,7 @@ apply() {
 				printf bgesc, substr(bg, 2) > "/dev/tty"
 				printf curesc, substr(cursor, 2) > "/dev/tty"
 
-				f=ENVIRON["THEME_HISTFILE"]
+				f=ENVIRON["TAK_HISTFILE"]
 				if(f) {
 					while((getline < f) > 0)
 						if($0 != target)
@@ -5902,7 +5902,7 @@ apply() {
 list() {
 	echo "$themes"| awk '
 		BEGIN {
-			f = ENVIRON["THEME_HISTFILE"]
+			f = ENVIRON["TAK_HISTFILE"]
 			if(f) {
 				while((getline < f) > 0) {
 					mru[nmru++] = $0
@@ -5940,9 +5940,9 @@ case "$1" in
 	"$0" -l|fzf\
 		--tac\
 		--bind "enter:execute-silent($0 {})"\
-		--bind "down:down+execute-silent(THEME_HISTFILE= $0 {})"\
-		--bind "up:up+execute-silent(THEME_HISTFILE= $0 {})"\
-		--bind "change:execute-silent(THEME_HISTFILE= $0 {})"\
+		--bind "down:down+execute-silent(TAK_HISTFILE= $0 {})"\
+		--bind "up:up+execute-silent(TAK_HISTFILE= $0 {})"\
+		--bind "change:execute-silent(TAK_HISTFILE= $0 {})"\
 		--bind "ctrl-c:execute($0 {};echo {})+abort"\
 		--bind "esc:execute($0 {};echo {})+abort"\
 		--no-sort\
